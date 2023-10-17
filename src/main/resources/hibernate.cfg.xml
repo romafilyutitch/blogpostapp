@@ -2,20 +2,24 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-<!--        Database connection properties-->
+        <!--        Database connection properties-->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/blogpostappdb</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.username">blogpostappusr</property>
+        <property name="hibernate.connection.password">blogpostapppas</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
 
-<!--        Hibernate dialect for database-->
+        <!--        Hibernate dialect for database-->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
-<!--        Enable SQL logging-->
+        <!--        Enable SQL logging-->
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
 
-<!--        Mapping files or annotated classes-->
-<!--        Add entity class mappings here-->
+        <!--        Mapping files or annotated classes-->
+        <!--        Add entity class mappings here-->
+        <mapping resource="Post.hbm.xml"/>
+        <mapping resource="User.hbm.xml"/>
+        <mapping resource="Comment.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

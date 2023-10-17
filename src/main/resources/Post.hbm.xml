@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="org.romafill.blogpostapp.entity.Post" table="POST">
+        <id name="id" type="java.lang.Long">
+            <column name="ID"/>
+            <generator class="identity"/>
+        </id>
+
+        <property name="title" type="string" column="TITLE"/>
+        <property name="text" type="string" column="TEXT"/>
+        <property name="createdDateTime" type="java.time.LocalDateTime" generated="insert">
+            <column name="CREATED_DATE_TIME" sql-type="TIMESTAMP DEFAULT CURRENT_TIMESTAMP"/>
+        </property>
+        <property name="likes" type="long" column="LIKES"/>
+        <many-to-one name="author" class="org.romafill.blogpostapp.entity.User">
+            <column name="AUTHOR_ID" not-null="true"/>
+        </many-to-one>
+        <set name="comments" table="COMMENT" lazy="true" cascade="all">
+            <key column="POST_ID" not-null="true" />
+            <one-to-many class="org.romafill.blogpostapp.entity.Comment"/>
+        </set>
+    </class>
+</hibernate-mapping>
