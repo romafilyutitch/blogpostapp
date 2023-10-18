@@ -17,7 +17,7 @@ public class CommentRepository extends AbstractRepository<Comment> implements IC
     }
 
     @Override
-    protected String getEntityName() {
-        return Comment.class.getName();
+    protected Class<Comment> getEntityClass() {
+        return Comment.class;
     }
 }

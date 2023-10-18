@@ -2,13 +2,9 @@ package org.romafill.blogpostapp.repository;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.romafill.blogpostapp.entity.Comment;
 import org.romafill.blogpostapp.entity.User;
-
-import javax.naming.StringRefAddr;
-import java.util.List;
-import java.util.Optional;
 
 public class UserRepository extends AbstractRepository<User> implements IUserRepository {
 
@@ -22,7 +18,7 @@ public class UserRepository extends AbstractRepository<User> implements IUserRep
     }
 
     @Override
-    protected String getEntityName() {
-        return User.class.getName();
+    protected Class<User> getEntityClass() {
+        return User.class;
     }
 }

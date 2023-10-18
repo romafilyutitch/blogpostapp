@@ -13,11 +13,11 @@ public class PostRepository extends AbstractRepository<Post> implements IPostRep
 
     @Override
     protected Query<Post> buildListQuery(Session session) {
-        return session.createQuery("from Post", Post.class);
+        return session.createQuery("from Post p left join fetch p.comments", Post.class);
     }
 
     @Override
-    protected String getEntityName() {
-        return Post.class.getName();
+    protected Class<Post> getEntityClass() {
+        return Post.class;
     }
 }
