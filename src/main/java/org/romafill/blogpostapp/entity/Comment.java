@@ -24,7 +24,6 @@ public class Comment {
     }
 
     public User getAuthor() {
-        System.out.println("Test git hub1sdfsdfsdfsdfsfgsdfgdfgf2312345413424sdsdafsdffsdfdsfsdfsdff");
         return author;
     }
 

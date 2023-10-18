@@ -1,10 +1,7 @@
 package org.romafill.blogpostapp.app;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import org.romafill.blogpostapp.entity.Post;
+import org.romafill.blogpostapp.repository.IPostRepository;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -14,26 +11,12 @@ public class Main {
 
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        SessionFactory sessionFactory = applicationContext.getBean(SessionFactory.class);
+        IPostRepository postRepository = applicationContext.getBean(IPostRepository.class);
 
-        Transaction transaction = null;
+        List<Post> posts = postRepository.findAll();
 
-        try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
-
-            Query<Post> postsQuery = session.createQuery("from Post", Post.class);
-            List<Post> posts = postsQuery.list();
-
-
-            for (Post post : posts) {
-                System.out.println(post);
-            }
-
-            transaction.commit();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (Post post : posts) {
+            System.out.println(post);
         }
     }
 }
