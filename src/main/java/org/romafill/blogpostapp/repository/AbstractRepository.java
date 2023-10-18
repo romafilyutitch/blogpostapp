@@ -43,7 +43,7 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
 
-            T result = (T) session.find(getEntityClass(), id);
+            T result = session.find(getEntityClass(), id);
 
             transaction.commit();
 
