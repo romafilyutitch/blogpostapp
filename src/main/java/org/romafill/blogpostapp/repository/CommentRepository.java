@@ -17,7 +17,7 @@ public class CommentRepository extends AbstractRepository<Comment> implements IC
     }
 
     @Override
-    protected Class<Comment> getEntityClass() {
-        return Comment.class;
+    protected Query<Comment> buildFindByIdQuery(Session session) {
+        return session.createQuery("from Comment c where c.id = :id", Comment.class);
     }
 }

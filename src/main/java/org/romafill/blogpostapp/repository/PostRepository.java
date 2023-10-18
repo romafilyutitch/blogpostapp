@@ -17,7 +17,7 @@ public class PostRepository extends AbstractRepository<Post> implements IPostRep
     }
 
     @Override
-    protected Class<Post> getEntityClass() {
-        return Post.class;
+    protected Query<Post> buildFindByIdQuery(Session session) {
+        return session.createQuery("from Post p left join fetch p.comments where p.id = :id", Post.class);
     }
 }

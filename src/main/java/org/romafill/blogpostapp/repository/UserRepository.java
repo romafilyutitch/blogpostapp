@@ -3,7 +3,6 @@ package org.romafill.blogpostapp.repository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.romafill.blogpostapp.entity.Comment;
 import org.romafill.blogpostapp.entity.User;
 
 public class UserRepository extends AbstractRepository<User> implements IUserRepository {
@@ -18,7 +17,7 @@ public class UserRepository extends AbstractRepository<User> implements IUserRep
     }
 
     @Override
-    protected Class<User> getEntityClass() {
-        return User.class;
+    protected Query<User> buildFindByIdQuery(Session session) {
+        return session.createQuery("from User u where u.id = :id", User.class);
     }
 }

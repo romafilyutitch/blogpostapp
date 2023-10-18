@@ -43,12 +43,17 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
 
-            T result = session.find(getEntityClass(), id);
+            Query<T> entityQuery = buildFindByIdQuery(session);
+            entityQuery.setParameter("id", id);
+
+
+            T result = entityQuery.getSingleResultOrNull();
 
             transaction.commit();
 
             return Optional.ofNullable(result);
         } catch (Exception e) {
+            e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -118,5 +123,5 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
 
     protected abstract Query<T> buildListQuery(Session session);
 
-    protected abstract Class<T> getEntityClass();
+    protected abstract Query<T> buildFindByIdQuery(Session session);
 }
