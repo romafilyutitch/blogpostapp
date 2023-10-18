@@ -15,7 +15,7 @@
         <many-to-one name="author" class="org.romafill.blogpostapp.entity.User">
             <column name="AUTHOR_ID" not-null="true"/>
         </many-to-one>
-        <set name="comments" table="COMMENT" lazy="true" cascade="all">
+        <set name="comments" table="COMMENT" cascade="all">
             <key column="POST_ID" not-null="true" />
             <one-to-many class="org.romafill.blogpostapp.entity.Comment"/>
         </set>

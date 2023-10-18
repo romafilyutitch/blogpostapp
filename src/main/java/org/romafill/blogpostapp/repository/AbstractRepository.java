@@ -43,10 +43,7 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
 
-            Query<T> entityQuery = buildFindByIdQuery(session);
-            entityQuery.setParameter("id", id);
-
-
+            Query<T> entityQuery = buildFindByIdQuery(session, id);
             T result = entityQuery.getSingleResultOrNull();
 
             transaction.commit();
@@ -123,5 +120,5 @@ public abstract class AbstractRepository<T> implements IRepository<T> {
 
     protected abstract Query<T> buildListQuery(Session session);
 
-    protected abstract Query<T> buildFindByIdQuery(Session session);
+    protected abstract Query<T> buildFindByIdQuery(Session session, long id);
 }

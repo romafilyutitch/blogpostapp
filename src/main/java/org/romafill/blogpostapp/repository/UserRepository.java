@@ -17,7 +17,10 @@ public class UserRepository extends AbstractRepository<User> implements IUserRep
     }
 
     @Override
-    protected Query<User> buildFindByIdQuery(Session session) {
-        return session.createQuery("from User u where u.id = :id", User.class);
+    protected Query<User> buildFindByIdQuery(Session session, long id) {
+        Query<User> userQuery = session.createQuery("from User u where u.id = :id", User.class);
+        userQuery.setParameter("id", id);
+
+        return userQuery;
     }
 }
