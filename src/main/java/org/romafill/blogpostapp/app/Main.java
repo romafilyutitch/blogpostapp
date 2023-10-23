@@ -2,6 +2,8 @@ package org.romafill.blogpostapp.app;
 
 import org.romafill.blogpostapp.entity.Post;
 import org.romafill.blogpostapp.repository.IPostRepository;
+import org.romafill.blogpostapp.service.EntityNotFoundException;
+import org.romafill.blogpostapp.service.IPostService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -12,7 +14,7 @@ public class Main {
 
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        IPostRepository postRepository = applicationContext.getBean(IPostRepository.class);
+        IPostService postRepository = applicationContext.getBean(IPostService.class);
 
         List<Post> posts = postRepository.findAll();
 
@@ -20,12 +22,15 @@ public class Main {
             System.out.println(post);
         }
 
-        System.out.println("Find by id ");
+        try {
+            System.out.println("Find by id ");
+            Post post = postRepository.findById(100);
 
-        Optional<Post> optionalPost = postRepository.findById(20);
-
-        if (optionalPost.isPresent()) {
-            System.out.println(optionalPost.get());
+            System.out.println(post);
+        } catch (EntityNotFoundException e) {
+            System.out.println(e);
         }
+
+
     }
 }

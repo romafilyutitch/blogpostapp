@@ -34,4 +34,24 @@
         <constructor-arg name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="userRepository" class="org.romafill.blogpostapp.repository.UserRepository">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="commentRepository" class="org.romafill.blogpostapp.repository.CommentRepository">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+<!--    Services-->
+    <bean id="postService" class="org.romafill.blogpostapp.service.PostService">
+        <constructor-arg name="repository" ref="postRepository"/>
+    </bean>
+
+    <bean id="userService" class="org.romafill.blogpostapp.service.UserService">
+        <constructor-arg name="repository" ref="userRepository"/>
+    </bean>
+
+    <bean id="commentService" class="org.romafill.blogpostapp.service.CommentService">
+        <constructor-arg name="repository" ref="commentRepository"/>
+    </bean>
 </beans>
