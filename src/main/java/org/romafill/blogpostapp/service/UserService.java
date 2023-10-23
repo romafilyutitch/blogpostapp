@@ -22,7 +22,7 @@ public class UserService implements IUserService {
     @Override
     public User findById(long id) {
         Optional<User> optionalUser = repository.findById(id);
-        return optionalUser.orElseThrow(() -> new EntityNotFoundException(User.class.getName(), id));
+        return optionalUser.orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id));
     }
 
     @Override

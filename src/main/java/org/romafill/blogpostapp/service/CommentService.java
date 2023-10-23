@@ -22,7 +22,7 @@ public class CommentService implements ICommentService {
     @Override
     public Comment findById(long id) {
         Optional<Comment> optionalComment = repository.findById(id);
-        return optionalComment.orElseThrow(() -> new EntityNotFoundException(Comment.class.getName(), id));
+        return optionalComment.orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id));
     }
 
     @Override

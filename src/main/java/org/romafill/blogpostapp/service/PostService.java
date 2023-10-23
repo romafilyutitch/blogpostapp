@@ -22,7 +22,7 @@ public class PostService implements IPostService {
     @Override
     public Post findById(long id) {
         Optional<Post> optionalPost = repository.findById(id);
-        return optionalPost.orElseThrow(() -> new EntityNotFoundException(Post.class.getName(), id));
+        return optionalPost.orElseThrow(() -> new EntityNotFoundException("Post not found with ID: " + id));
     }
 
     @Override
