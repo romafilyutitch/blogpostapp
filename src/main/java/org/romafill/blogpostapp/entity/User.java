@@ -11,6 +11,16 @@ public class User {
     private LocalDateTime createdDateTime;
     private Set<Post> posts;
 
+    public User() {
+    }
+
+    public User(long id, String username, LocalDateTime createdDateTime, Set<Post> posts) {
+        this.id = id;
+        this.username = username;
+        this.createdDateTime = createdDateTime;
+        this.posts = posts;
+    }
+
     public long getId() {
         return id;
     }
