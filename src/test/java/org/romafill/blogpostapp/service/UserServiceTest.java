@@ -7,18 +7,15 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.romafill.blogpostapp.entity.User;
 import org.romafill.blogpostapp.repository.IUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -88,7 +85,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void whenUserExists_whenUpdateUser_thenUserUpdated() {
+    public void givenUserExists_whenUpdateUser_thenUserUpdated() {
         User user = new User(1, "User1", LocalDateTime.now(), Collections.emptySet());
 
         when(repository.update(user)).thenReturn(user);
@@ -100,7 +97,7 @@ class UserServiceTest {
     }
 
     @Test
-    public void whenUserExists_whenRemoveUser_thenUserRemoved() {
+    public void givenUserExists_whenRemoveUser_thenUserRemoved() {
         User user = new User(1, "User1", LocalDateTime.now(), Collections.emptySet());
 
         when(repository.findById(1)).thenReturn(Optional.of(user));

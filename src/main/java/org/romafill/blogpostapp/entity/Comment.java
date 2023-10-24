@@ -7,6 +7,15 @@ public class Comment {
     private String text;
     private User author;
 
+    public Comment() {
+    }
+
+    public Comment(long id, String text, User author) {
+        this.id = id;
+        this.text = text;
+        this.author = author;
+    }
+
     public long getId() {
         return id;
     }

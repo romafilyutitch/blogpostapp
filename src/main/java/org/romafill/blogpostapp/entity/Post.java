@@ -14,6 +14,18 @@ public class Post {
     private User author;
     private Set<Comment> comments = new HashSet<>();
 
+    public Post() {
+    }
+
+    public Post(long id, String title, String text, LocalDateTime createdDateTime, long likes, User author, Set<Comment> comments) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.createdDateTime = createdDateTime;
+        this.likes = likes;
+        this.author = author;
+        this.comments = comments;
+    }
 
     public long getId() {
         return id;
