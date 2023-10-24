@@ -1,17 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-<!--    Define the log file location and pattern-->
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>logfile.log</file>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/logfile.log</file>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{100} - %msg%n</pattern>
         </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logfile.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
     </appender>
 
-<!--    Define the root logger and its appender-->
-    <root level="INFO">
-        <eppender-ref ref="FILE"/>
+    <root level="info">
+        <appender-ref ref="FILE" />
     </root>
 
-<!--    Define logger for specific package(s) and set a different log level-->
-    <logger name="org.romafill.blogpostapp" level="DEBUG"/>
+    <logger name="org.hibernate" level="OFF" additivity="false">
+        <appender-ref ref="FILE"/>
+    </logger>
+
+    <logger name="org.springframework" level="OFF" additivity="false">
+        <appender-ref ref="FILE"/>
+    </logger>
 </configuration>
