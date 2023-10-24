@@ -1,0 +1,17 @@
+<configuration>
+<!--    Define the log file location and pattern-->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logfile.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+<!--    Define the root logger and its appender-->
+    <root level="INFO">
+        <eppender-ref ref="FILE"/>
+    </root>
+
+<!--    Define logger for specific package(s) and set a different log level-->
+    <logger name="org.romafill.blogpostapp" level="DEBUG"/>
+</configuration>

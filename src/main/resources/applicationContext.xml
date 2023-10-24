@@ -29,6 +29,11 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+<!--    Log Config-->
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="location" value="classpath:logback.xml"/>
+    </bean>
+
 <!--    Repositories -->
     <bean id="postRepository" class="org.romafill.blogpostapp.repository.PostRepository">
         <constructor-arg name="sessionFactory" ref="sessionFactory"/>
