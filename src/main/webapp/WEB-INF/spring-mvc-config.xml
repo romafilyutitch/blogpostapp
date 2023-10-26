@@ -11,8 +11,12 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <import resource="applicationContext.xml"/>
+
     <!-- Component scan for your controllers -->
-    <context:component-scan base-package="org.romafill.blogpostapp.controller"/>
+    <bean id="helloController" class="org.romafill.blogpostapp.controller.HelloController">
+        <constructor-arg name="postService" ref="postService"/>
+    </bean>
 
     <!-- Thymeleaf View Resolver -->
     <bean class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
@@ -33,6 +37,4 @@
         <property name="suffix" value=".html"/>
     </bean>
 
-    <!-- Enable Spring MVC annotations -->
-    <mvc:annotation-driven />
 </beans>
