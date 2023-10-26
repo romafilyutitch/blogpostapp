@@ -1,18 +1,16 @@
 package org.romafill.blogpostapp.app;
 
 import org.romafill.blogpostapp.entity.Post;
-import org.romafill.blogpostapp.repository.IPostRepository;
 import org.romafill.blogpostapp.service.EntityNotFoundException;
 import org.romafill.blogpostapp.service.IPostService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
-import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
 
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("WEB-INF/applicationContext.xml");
 
         IPostService postRepository = applicationContext.getBean(IPostService.class);
 

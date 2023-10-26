@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
+@ContextConfiguration(locations = "classpath:WEB-INF/applicationContext.xml")
 class UserServiceTest {
 
     @InjectMocks
