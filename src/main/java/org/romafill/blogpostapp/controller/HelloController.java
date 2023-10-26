@@ -1,10 +1,12 @@
 package org.romafill.blogpostapp.controller;
 
+import org.romafill.blogpostapp.entity.Post;
 import org.romafill.blogpostapp.service.IPostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 public class HelloController {
@@ -15,10 +17,10 @@ public class HelloController {
         this.postService = postService;
     }
 
-    @GetMapping("/hello")
-    public String hello(Model model) {
-        System.out.println("hello");
-        model.addAttribute("message", "Hello, Thymeleaf");
-        return "helloTemplate";
+    @GetMapping("/")
+    public String posts(Model model) {
+        List<Post> posts = postService.findAll();
+        model.addAttribute("posts", posts);
+        return "mainPage";
     }
 }
